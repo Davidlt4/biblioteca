@@ -21,6 +21,10 @@ class Libro
     #[Assert\Regex(
         pattern: '/^[a-zA-Z0-9 áíéóúÁÉÍÓÚñÑ]+$/'
     )]
+    #[Assert\Length(
+        min: 1,
+        max: 100,
+    )]
     #[ORM\Column(length: 255)]
     private ?string $titulo = null;
 
@@ -28,10 +32,18 @@ class Libro
     #[Assert\Regex(
         pattern: '/^[a-zA-Z áíéóúÁÉÍÓÚñÑ]+$/'
     )]
+    #[Assert\Length(
+        min: 1,
+        max: 100,
+    )]
     #[ORM\Column(length: 255)]
     private ?string $autor = null;
     
     #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 1,
+        max: 100,
+    )]
     #[Assert\Regex(
         pattern: '/^[a-zA-Z áíéóúÁÉÍÓÚñÑ]+$/'
     )]
@@ -41,6 +53,10 @@ class Libro
     #[Assert\NotBlank]
     #[Assert\Regex(
         pattern: '/^[a-zA-Z áíéóúÁÉÍÓÚñÑ]+$/'
+    )]
+    #[Assert\Length(
+        min: 1,
+        max: 100,
     )]
     #[ORM\Column(length: 255)]
     private ?string $genero = null;
