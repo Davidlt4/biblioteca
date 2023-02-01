@@ -3,10 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Prestamo;
-use App\Form\DateType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
+
 
 class PrestamoType extends AbstractType
 {

@@ -6,6 +6,7 @@ use App\Repository\SocioRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SocioRepository::class)]
 class Socio
@@ -15,18 +16,61 @@ class Socio
     #[ORM\Column]
     private ?int $id = null;
 
+
+    #[Assert\NotBlank]
+    #[Assert\Regex(
+        pattern: '/^[a-zA-Z áíéóúÁÉÍÓÚñÑ]+$/'
+    )]
+    #[Assert\Length(
+        min: 1,
+        max: 100,
+    )]
     #[ORM\Column(length: 255)]
     private ?string $nombre = null;
 
+
+    #[Assert\NotBlank]
+    #[Assert\Regex(
+        pattern: '/^[a-zA-Z áíéóúÁÉÍÓÚñÑ]+$/'
+    )]
+    #[Assert\Length(
+        min: 1,
+        max: 100,
+    )]
     #[ORM\Column(length: 255)]
     private ?string $apellidos = null;
 
+
+    #[Assert\NotBlank]
+    #[Assert\Regex(
+        pattern: '/^[a-zA-Z0-9 áíéóúÁÉÍÓÚñÑ@.]+$/'
+    )]
+    #[Assert\Email(
+        message: 'El email {{ value }} no es un email válido.',
+    )]
     #[ORM\Column(length: 255)]
     private ?string $correo = null;
-
+    
+    #[Assert\NotBlank]
+    #[Assert\Regex(
+        pattern: '/^[0-9]+$/'
+    )]
+    #[Assert\Length(
+        min: 9,
+        max: 9,
+    )]
     #[ORM\Column(length: 255)]
     private ?string $telefono = null;
 
+
+    #[Assert\NotBlank]
+    #[Assert\Regex(
+        pattern: '/^[a-zA-Z0-9 áíéóúÁÉÍÓÚñÑ]+$/'
+    )]
+    #[Assert\Length(
+        min: 1,
+        max: 200,
+    )]
     #[ORM\Column(length: 255)]
     private ?string $direccion = null;
 
