@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Ejemplar;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Repository\LibroRepository;
 
 /**
  * @extends ServiceEntityRepository<Ejemplar>
@@ -16,9 +17,14 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class EjemplarRepository extends ServiceEntityRepository
 {
+
+
+    private LibroRepository $repository;
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Ejemplar::class);
+        $this->repository=new LibroRepository($registry);
     }
 
     public function save(Ejemplar $entity, bool $flush = false): void
@@ -33,6 +39,7 @@ class EjemplarRepository extends ServiceEntityRepository
     public function remove(Ejemplar $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
+        $this->repository->update($entity->getLibro());
 
         if ($flush) {
             $this->getEntityManager()->flush();

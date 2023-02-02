@@ -42,6 +42,12 @@ security:
     access_control:
 
         - { path: ^/socio, roles: ROLE_ADMIN}
+        - { path: ^/libro/new, roles: ROLE_ADMIN}
+        - { path: ^/prestamo/new, roles: ROLE_ADMIN}
+        - { path: ^/ejemplar/new, roles: ROLE_ADMIN}
+        - { path: ^/libro/[0-9]/edit, roles: ROLE_ADMIN}
+        - { path: ^/prestamo/[0-9]/edit, roles: ROLE_ADMIN}
+        - { path: ^/ejemplar/[0-9]/edit, roles: ROLE_ADMIN}
         - { path: ^/prestamo, roles: ROLE_USER }
         
 
