@@ -53,6 +53,28 @@ class LibroRepository extends ServiceEntityRepository
         }
     }
 
+    public function updatemas(Libro $entity,bool $flush = false):void
+    {
+        $entityManager = $this->getEntityManager();
+
+        $cantidad=$entityManager->createQuery(
+            'SELECT l.numEjemplares FROM App\Entity\Libro l WHERE l.id=?1'
+        );
+        $cantidad->setParameter(1,$entity->getId());
+        $cantidadFinal=$cantidad->execute()[0]["numEjemplares"]+1;
+
+        $query=$entityManager->createQuery(
+            'UPDATE App\Entity\Libro l SET l.numEjemplares=?1 WHERE l.id=?2');
+
+        $query->setParameter(1,$cantidadFinal);
+        $query->setParameter(2,$entity->getId());
+        $query->execute();
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
     public function remove(Libro|Ejemplar $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);

@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Libro;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,7 +17,7 @@ class LibroType extends AbstractType
             ->add('autor')
             ->add('editorial')
             ->add('genero')
-            ->add('numEjemplares')
+            ->add('numEjemplares',IntegerType::class,["data"=>0])
         ;
     }
 

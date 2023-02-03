@@ -30,6 +30,7 @@ class EjemplarRepository extends ServiceEntityRepository
     public function save(Ejemplar $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
+        $this->repository->updatemas($entity->getLibro());
 
         if ($flush) {
             $this->getEntityManager()->flush();

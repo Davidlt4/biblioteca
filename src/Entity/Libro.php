@@ -63,8 +63,8 @@ class Libro
     
     #[Assert\NotBlank]
     #[Assert\Range(
-        min: 1,
-        max: 9999,
+        min: 0,
+        max: 0,
         notInRangeMessage: 'Un número entre {{ min }} y {{ max }}',
     )]
     #[ORM\Column]
